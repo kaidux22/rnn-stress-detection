@@ -1,0 +1,62 @@
+Time Log - 2025-04-27 08:18:08
+
+Dataset without timesteps
+Time: 48.54190945625305 sec
+
+Dataset with 4 timestpes and an internal window length of 15 seconds
+Time: 170.20113801956177 sec
+
+Dataset with 5 timestpes and an internal window length of 15 seconds
+Time: 325.2619297504425 sec
+
+Dataset with 6 timestpes and an internal window length of 15 seconds
+Time: 503.8213839530945 sec
+
+Dataset with 7 timestpes and an internal window length of 15 seconds
+Time: 708.4711191654205 sec
+
+Dataset with 8 timestpes and an internal window length of 15 seconds
+Time: 943.0195467472076 sec
+
+Dataset with 2 timestpes and an internal window length of 30 seconds
+Time: 1018.42302775383 sec
+
+Dataset with 3 timestpes and an internal window length of 30 seconds
+Time: 1128.6092376708984 sec
+
+Dataset with 4 timestpes and an internal window length of 30 seconds
+Time: 1277.0307970046997 sec
+
+Dataset with 5 timestpes and an internal window length of 30 seconds
+Time: 1464.4546966552734 sec
+
+Dataset with 6 timestpes and an internal window length of 30 seconds
+Time: 1690.6057198047638 sec
+
+Dataset with 7 timestpes and an internal window length of 30 seconds
+Time: 1956.4429867267609 sec
+
+Dataset with 8 timestpes and an internal window length of 30 seconds
+Time: 2257.0196857452393 sec
+
+Dataset with 2 timestpes and an internal window length of 45 seconds
+Time: 2343.100009202957 sec
+
+Dataset with 3 timestpes and an internal window length of 45 seconds
+Time: 2469.8780093193054 sec
+
+Dataset with 4 timestpes and an internal window length of 45 seconds
+Time: 2638.198164463043 sec
+
+Dataset with 5 timestpes and an internal window length of 45 seconds
+Time: 2852.150067806244 sec
+
+Dataset with 6 timestpes and an internal window length of 45 seconds
+Time: 3110.0592110157013 sec
+
+Dataset with 7 timestpes and an internal window length of 45 seconds
+Time: 3410.636879682541 sec
+
+Dataset with 8 timestpes and an internal window length of 45 seconds
+Time: 3755.676381111145 sec
+
