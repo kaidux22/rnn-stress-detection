@@ -3,6 +3,7 @@ import zipfile
 from pathlib import Path
 from enum import Enum, auto
 import shutil
+import os
 
 class DataType(Enum):
     RAW = auto()
@@ -22,6 +23,13 @@ class DataManager:
 
         for key in self.dir_paths.keys():
             self.dir_paths[key].mkdir(parents=True, exist_ok=True)
+        
+        if self.dir_paths[DataType.INTERIM].stat().st_size == 0:
+             if not list(self.dir_paths[DataType.INTERIM].iterdir()):
+                 self.extract_raw_data()
+
+    def get_path(self, folder_id):
+        return self.dir_paths[folder_id]
 
     def get_wesad(self):
         url = "https://uni-siegen.sciebo.de/s/HGdUkoNlW1Ub0Gx/download"
@@ -37,14 +45,25 @@ class DataManager:
             print('Failed to download file')
 
     def extract_raw_data(self):
-        with zipfile.ZipFile(self.dir_paths[DataType.RAW] / 'WESAD.zip', 'r') as zip_ref:
-            names = [name for name in zip_ref.namelist() if 'pkl' in name]
+        if not list(self.dir_paths[DataType.RAW].iterdir()):
+            self.get_wesad()
 
-            for name in names:
-                zip_ref.extract(name, self.dir_paths[DataType.INTERIM])
-                print(f"The {name} subject was extracted.")
+        with zipfile.ZipFile(self.dir_paths[DataType.RAW] / 'WESAD.zip', 'r') as zip_ref:
+            pkl_files = [name for name in zip_ref.namelist() if name.endswith('.pkl')]
+            
+            extracted_files = []
+            
+            for file_path in pkl_files:
+                file_info = zip_ref.getinfo(file_path)
+                original_filename = file_info.filename
+                file_info.filename = os.path.basename(original_filename)
+                
+                zip_ref.extract(file_info, self.dir_paths[DataType.INTERIM])
+                
+                extracted_files.append(file_info.filename)
+                print(f"The {file_info.filename} subject was extracted.")
         
-        return names
+        return extracted_files
 
     def clean_gen_data(self, *args, clean_all=False, confirmation=True):
         dir_to_delete = []
@@ -78,7 +97,4 @@ class DataManager:
         for dir in dir_to_delete:                
             shutil.rmtree(Path(dir))
 
-        print("The data was deleted successfully.")            
-
-dm = DataManager()
-dm.clean_gen_data(clean_all=True)
+        print("The data was deleted successfully.")
